@@ -37,7 +37,6 @@ pub fn traverse_depth(depth: usize,
 pub fn day6_pt1(input: &str) -> usize{
     // for some reason aoc wouldn't let me as ref a hashmap
     let tree = input_gen(input);
-    //tree: &HashMap<String, Vec<String>>) -> usize {
     // we consider COM the root
     traverse_depth(0, String::from("COM"), &tree)
 }

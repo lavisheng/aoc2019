@@ -85,7 +85,6 @@ impl Coords{
 
 #[aoc_generator(day3)]
 pub fn wires_gen(input: &str) -> Vec<Vec<(i32, i32)>>{
-    let lines: Vec<&str> = input.lines().collect();
     let mut out: Vec<Vec<(i32, i32)>> = Vec::new();
     
     for line in input.lines(){

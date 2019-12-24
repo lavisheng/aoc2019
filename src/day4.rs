@@ -68,7 +68,6 @@ pub fn validity_pt2(num: i32) -> bool{
 }
 #[aoc(day4, part2)]
 pub fn day4_pt2(range: &[i32]) -> i32{
-    //println!("{}", validity_pt2(111122));
     let mut counter = 0;
     for num in range[0]..range[1]{
         if validity_pt2(num){

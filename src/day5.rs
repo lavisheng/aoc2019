@@ -19,7 +19,6 @@ pub fn opcode(val: &i32) -> [i32;4]{
     code =  code / 10;
 
     let p3_mode = code % 10;
-    code = code / 10;
     [op, p1_mode, p2_mode, p3_mode]
 }
 
