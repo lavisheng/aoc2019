@@ -10,7 +10,7 @@ pub fn validity(num: i32)->bool{
     let string = num.to_string();
     let mut iterator = string.chars().into_iter();
     let mut last = iterator.next().unwrap();
-    // flags
+    // flag
     let mut double = false;
     let mut non_decr = true;
     for curr in iterator{
