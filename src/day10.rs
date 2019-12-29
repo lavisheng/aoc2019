@@ -1,6 +1,7 @@
 use std::collections::{HashSet, HashMap};
 #[aoc_generator(day10)]
 pub fn input_gen(input: &str) -> Vec<(i32, i32)>{
+    // gets coordinates of all asteroids
     input.lines()
         .enumerate()
         .map(|(y, v)| v.trim()
@@ -92,15 +93,18 @@ pub fn day10_pt2(coordinates: &[(i32, i32)]) -> i32{
                 }
             });
         let mut outer_asteroids = ring_map.values().map(|v| *v).collect::<Vec<(i32, i32)>>();
-        if outer_asteroids.len() > to_remove as usize{
+        if outer_asteroids.len() >= to_remove as usize{
             // the important one is in this ring
+            // return at end so don't bother removing
+
+            // sort by angle from up clockwise direction
             outer_asteroids.sort_by(|(ax, ay), (bx, by)| get_angle(*ax, *ay)
                                     .partial_cmp(&get_angle(*bx, *by)).unwrap());
             let two_hundredth = outer_asteroids.iter()
                 .nth((to_remove - 1) as usize).unwrap();
             return (location.0 + two_hundredth.0) * 100 + location. 1 + two_hundredth.1;
         } else {
-            // not in this ring, remove
+            // not in this ring, remove entire ring
             other_coords = other_coords.iter()
                 .filter(|v| outer_asteroids.contains(v))
                 .map(|v| *v)
@@ -109,5 +113,6 @@ pub fn day10_pt2(coordinates: &[(i32, i32)]) -> i32{
         }
     }
     // should never reach here
-    return -1
+    // would be an error
+    return -1;
 }
