@@ -65,6 +65,7 @@ impl Moon{
 pub fn input_gen(input: &str) -> Vec<Moon>{
     let mut moons: Vec<Moon> = Vec::new();
     for line in input.trim().lines(){
+        // didn't install regex, don't be me
         let data = line.split(|x| x == '=' || x == ',' || x == '>')
             .collect::<Vec<&str>>();
         moons.push(Moon::new( data[1].trim().parse::<i32>().unwrap(),
@@ -76,7 +77,6 @@ pub fn input_gen(input: &str) -> Vec<Moon>{
 
 #[aoc(day12, part1)]
 pub fn day12_pt1(data: &[Moon]) -> i32{
-    //let mut moons = data.clone();
     let mut moons: Vec<Moon> = Vec::new();
     for m in data{
         moons.push(m.clone());
@@ -127,7 +127,6 @@ pub fn day12_pt2(data: &[Moon]) -> usize {
         init[i] = m.values();
     }
     // find all cycles! 
-    //let mut expected_cycles: Vec<usize> = vec![0; moons.len() * 3];
     let mut big_cycles = [0; 3];
     let mut found = 0;
     let mut curr_iter = 0;
@@ -153,6 +152,7 @@ pub fn day12_pt2(data: &[Moon]) -> usize {
             total_vel_y += m.dy.abs();
             total_vel_z += m.dz.abs();
         }
+        // note that x, y, z are independent
         if total_vel_x == 0 && big_cycles[0] == 0{
             big_cycles[0] = curr_iter * 2;
             found += 1;
